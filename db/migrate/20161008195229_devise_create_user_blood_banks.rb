@@ -42,7 +42,7 @@ class DeviseCreateUserBloodBanks < ActiveRecord::Migration[5.0]
     end
 
     add_index :user_blood_banks, :email,                unique: true
-    add_index :user_blood_banks, :cnpj,                unique: true
+    add_index :user_blood_banks, :cnpj,                 unique: true
     add_index :user_blood_banks, :reset_password_token, unique: true
     # add_index :user_blood_banks, :confirmation_token,   unique: true
     # add_index :user_blood_banks, :unlock_token,         unique: true
