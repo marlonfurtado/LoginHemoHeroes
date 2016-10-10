@@ -1,0 +1,103 @@
+@import 'variables';
+
+.Modal {
+  $border-color: #c1c1c1;
+
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  display: none;
+  margin: 30vh auto 0;
+  max-width: 550px;
+  overflow: hidden;
+
+  &::after {
+    background: rgba(0, 0, 0, 0.66);
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &-header {
+    background-color: #6495ED;
+    padding: 15px;
+    overflow: auto;
+  }
+
+  &-step {
+    background: #ffffff;
+    margin: 12px 0 0 15px;
+    border-radius: 100%;
+    float: left;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+  }
+
+  &-stepText {
+    font-size: 18px;
+    font-weight: 800;
+    padding: 6px 0 0 0;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+  }
+
+  &-title {
+    font-size: 24px;
+    color: $brand-color;
+    padding-right: 50px;
+    margin-top: 19px;
+    height: 0px;
+  }
+
+  &-body {
+    background-color: $body-color;
+    padding: 15px;
+    overflow: auto;
+  }
+
+  &-subTitle {
+    font-size: 18px;
+    margin: 6px 0 10px;
+  }
+
+  &-typesRequest {
+    margin: 1%;
+    float: left;
+
+    & li {
+      font-size: 14px;
+      font-weight: bolder;
+      padding-top: 2px;
+      margin: 5px;
+    }
+
+  }
+
+  &-confirmation{
+    padding: 0 15px;
+    margin-top: 15px;
+    border-left: 1px solid $border-color;
+    float: right;
+    @include mobile {
+      border-top: 1px solid $border-color;
+      border-left: none;
+    }
+  }
+
+  &-buttons {
+    margin: 12px 0 0 10px;
+
+
+    & .Button{
+      margin: 0 10px;
+    }
+
+  }
+
+}

@@ -1,0 +1,58 @@
+@import "variables";
+
+.Button{
+  background: $brand-color;
+  padding: 12px;
+  font-family: 'arial', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0,0,0,.6);
+  border:none;
+  border-radius: .28571429rem;
+  box-shadow: 1px 1px 5px rgba(0,0,0,.6);
+  display: inline-block;
+  text-align: center;
+
+  &:hover{
+    background-color: scale-color($brand-color, $lightness: -10%);
+    cursor: pointer;
+  }
+
+  &--large{
+    padding: 20px;
+    width: 250px;
+    font-size: 16px;
+  }
+
+  &--medium{
+    width:130px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  &--small{
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  &.is-canceled{
+    background: #e74c3c;
+    color: #fff;
+    box-shadow: 1px 1px 3px #c0392b;
+    &:hover{
+      background-color: scale-color(#e74c3c, $lightness: -10%);
+    }
+  }
+
+  &.is-actived{
+    background: #38C272;
+    color: #fff;
+    box-shadow: 1px 1px 3px #144629;
+
+    &:hover{
+      background-color: scale-color(#38C272, $lightness: -10%);
+    }
+  }
+
+
+}

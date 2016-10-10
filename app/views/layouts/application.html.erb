@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HemoHeroes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div class="OuterWrapper">
+    <% if user_blood_bank_signed_in? %>
+    Logado como <strong><%= current_user_blood_bank.email %></strong>.
+    <%= link_to 'Editar perfil', edit_user_blood_bank_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Sair", destroy_user_blood_bank_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% else %>
+    <%= link_to "Cadastrar Banco de Sangue", new_user_blood_bank_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Entrar", new_user_blood_bank_session_path, :class => 'navbar-link'  %>
+    <% end %>
+    <%= yield %>
+  </div>
+</body>
+</html>
