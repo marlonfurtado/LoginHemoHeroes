@@ -14,7 +14,7 @@ class UserBloodBanks::OmniauthCallbacksController < Devise::OmniauthCallbacksCon
   #   super
   # end
 
-  # GET|POST /users/auth/twitter/callback
+  # GET|POST /user_blood_banks/auth/twitter/callback
   # def failure
   #   super
   # end

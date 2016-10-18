@@ -1,20 +1,29 @@
 Rails.application.routes.draw do
 
-  devise_for :user_blood_banks,
-             controllers: { sessions: 'user_blood_banks/sessions',
-                            registrations: 'user_blood_banks/registrations' }
+  resources :demand_blood_banks
 
-  root 'welcome#index'
+  devise_for :user_blood_donators, :skip => [:sessions, :registrations]
+  as :user_blood_donator do
+    get 'login' => 'devise/sessions#new', :as => :new_user_blood_donator_session
+    post 'login' => 'sessions#create', :as => :user_blood_donator_session
+    delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_blood_donator_session
 
-  resources :addresses
-  resources :hospital_necessities
-  resources :hospitals
+    get 'cadastroDoador' => 'user_blood_donators/registrations#new' , :as => :new_user_blood_donator_registration
+    post 'cadastroDoador' => 'user_blood_donators/registrations#create' , :as => :user_blood_donator_registration
+  end
 
-  get '/necessidadehospital', to: 'hospital_necessities#index'
+  devise_for :user_blood_banks, :skip => [:sessions, :registrations]
+  as :user_blood_bank do
+    get 'login' => 'devise/sessions#new', :as => :new_user_blood_bank_session
+    post 'login' => 'sessions#create', :as => :user_blood_bank_session
+    delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_blood_bank_session
 
+    get 'cadastroBanco' => 'user_blood_banks/registrations#new' , :as => :new_user_blood_bank_registration
+    post 'cadastroBanco' => 'user_blood_banks/registrations#create' , :as => :user_blood_bank_registration
+  end
 
-  # root 'welcome#index'
-
+  get '/dashboard', to: 'welcome#index', :as => :dashboard
+  root 'application#index'
 
   # Routes for components in construction
   get '/components', to: 'components#index'

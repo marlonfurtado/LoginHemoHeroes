@@ -1,0 +1,3 @@
+class DemandBloodBank < ApplicationRecord
+    
+end

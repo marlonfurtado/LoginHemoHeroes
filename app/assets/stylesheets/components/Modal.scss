@@ -2,63 +2,81 @@
 
 .Modal {
   $border-color: #c1c1c1;
+  $overlay-background-color: rgba(0, 0, 0, 0.66);
 
-  border: 1px solid $border-color;
-  border-radius: 5px;
-  display: none;
-  margin: 30vh auto 0;
-  max-width: 550px;
-  overflow: hidden;
+  opacity: 0;
+  transition: 0.4s all ease;
+  visibility: hidden;
 
   &::after {
-    background: rgba(0, 0, 0, 0.66);
+    background: $overlay-background-color;
     content: ' ';
     height: 100%;
     left: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    z-index: -1;
+    z-index: 1;
+  }
+
+  &-content {
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 550px;
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    transition: 0.5s all ease;
+    @include mobile {
+      width: calc(100vw - 10px);
+    };
   }
 
   &-header {
-    background-color: #6495ED;
-    padding: 15px;
+    background-color: $brand-color;
     overflow: auto;
+    padding: 15px;
+  }
+
+  &-stepBox {
+    background: #ffffff;
+    border-radius: 100%;
+    float: left;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
   }
 
   &-step {
-    background: #ffffff;
-    margin: 12px 0 0 15px;
-    border-radius: 100%;
-    float: left;
-    text-align: center;
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-  }
-
-  &-stepText {
     font-size: 18px;
     font-weight: 800;
-    padding: 6px 0 0 0;
-    text-align: center;
-    width: 30px;
-    height: 30px;
+    margin: auto;
   }
 
-  &-title {
-    font-size: 24px;
-    color: $brand-color;
-    padding-right: 50px;
-    margin-top: 19px;
-    height: 0px;
+  &-titleBox {
+    display: flex;
+    align-items: center;
+    height: 40px;
   }
 
+  &-title{
+    color: $light-font-color;
+    font-size: 1.6rem;
+    padding: 0 12px;
+    margin: 0;
+    @include mobile {
+      font-size: 1.4rem;
+    };
+  }
   &-body {
     background-color: $body-color;
-    padding: 15px;
     overflow: auto;
+    padding: 15px;
+    height: 100%;
   }
 
   &-subTitle {
@@ -67,26 +85,20 @@
   }
 
   &-typesRequest {
-    margin: 1%;
-    float: left;
-
-    & li {
-      font-size: 14px;
-      font-weight: bolder;
-      padding-top: 2px;
-      margin: 5px;
-    }
 
   }
 
-  &-confirmation{
-    padding: 0 15px;
-    margin-top: 15px;
+  &-confirmation {
     border-left: 1px solid $border-color;
     float: right;
+    padding: 0 15px;
+
     @include mobile {
       border-top: 1px solid $border-color;
-      border-left: none;
+      border-left: 0;
+      text-align: center;
+      padding: 25px 0 0;
+      width: 100%;
     }
   }
 
@@ -94,7 +106,7 @@
     margin: 12px 0 0 10px;
 
 
-    & .Button{
+    & .Button {
       margin: 0 10px;
     }
 

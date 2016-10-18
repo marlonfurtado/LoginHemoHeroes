@@ -1,2 +1,0 @@
-class HospitalNecessity < ApplicationRecord
-end
