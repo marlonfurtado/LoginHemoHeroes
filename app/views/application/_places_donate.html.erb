@@ -1,0 +1,43 @@
+<section id="onde" class="Section Section--secondary u-align-center u-margin-top-large">
+
+  <h2 class="u-margin-0">
+    <a>Onde doar</a>
+  </h2>
+
+  <span class="Section-subtitle">Estes são os hospitais parceiros onde você poderá fazer sua doação</span>
+
+  <div class="Map-group">
+    <% @banks.each do |bank| %>
+    <div class="Map">
+      <div class="Map-name">
+        <%= bank.name %>
+      </div>
+
+      <!-- =Testes com mapa -->
+      <div id="hide" class="js-clickMap<%=bank.id%>" style="display:none;">
+        <span class="u-padding-bottom">Quando o <%= bank.name %> precisar, solicitará sua doação por email.</span><br />
+        <div class="Button Button--smallSecundary is-actived-secundary" onclick="Modal.open('.js-modalRegistration')">
+          Cadastre-se aqui <span class="glyphicon glyphicon-menu-right"></span>
+        </div>
+      </div>
+
+      <div class="Map-image" onclick="clickMap.show('.js-clickMap<%=bank.id%>')">
+        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=
+        #{bank.latitude}, #{bank.longitude}&markers=color:red%7Clabel:H%7C#{bank.latitude},
+        #{bank.longitude}&zoom=15&size=400x250&key=AIzaSyBJc6_zyREWQW3SaIg19--mmQFiUUzL94g",
+        data:{ nome:bank.name}, alt:"mapa") %>
+      </div>
+
+      <div class="Map-address">
+        <b>Endereço:</b> <%= bank.address %>
+      </div>
+
+      <div class="Map-phone">
+        <b>Contato:</b> <%= bank.phone %>
+      </div>
+
+    </div>
+    <% end %>
+  </div>
+  <p>Novos bancos de sangue em breve. </p>
+</section>
