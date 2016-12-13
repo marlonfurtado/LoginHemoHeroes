@@ -1,24 +1,37 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
-<% if resource.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+<div class="Modal js-modalRegistrationHospital">
+  <div class="Modal-content js-modalContent">
+    <div class="Modal-overlay" onclick="Modal.close('.js-modalRegistrationHospital')"></div>
 
-  <ul>
-    <% resource.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-<div class="Grid Grid--alignCenter">
-  <div class="Grid-cell u-desktop-size7of12 u-tablet-sizeFull u-mobile-sizeFull u-outerWrapper u-margin-auto">
-    <div class="Nav-ajust"></div>
-    <div class="Container Container--primary Grid-cell u-tablet-sizeFull u-margin-bottom-large u-margin-top-xlarge" >
-      <div class="Container-header Container-title ">
-        <h3 class="u-margin-small"> Cadastro de Hospital </h3>
-        <small>Cadastre seu hospital e aguarde a ativação da sua conta.</small>
+    <div class="Modal-header">
+      <div class="Modal-closeButton">
+        <a class="glyphicon glyphicon-remove" onclick="Modal.close('.js-modalRegistrationHospital')"></a>
       </div>
+      <div class="Grid">
+        <div class="Grid-cell u-sizeFull">
+          <div class="Modal-titleBox">
+            <h3 class="Modal-title">Cadastro de Hopistal</h3>
+            <small>Cadastre-se para soliciar novos doadores.</small>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Inicio Form -->
+    <form class="new_user_blood_bank" id="new_user_blood_bank" action="/cadastroBanco" accept-charset="UTF-8" method="post" onKeyDown="if (event.keyCode == '13'){ return false }" >
+      <!-- VER SE PRECISA DISSO PARA CADASTRO BANCO -->
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="authenticity_token" value="hJ33FVGdCf3dntfs8kC6twKZLdEQsygeXLTP5YZ8JZ+AWtPT+/+TT5emuonnBMrXZgLvY76sa4QW61eKJynOsw==">
+
+      <% if resource.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user_blood_bank from being saved:</h2>
+        <ul>
+          <% user_blood_bank.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
 
       <div class="Container-body">
         <div class="Form">
@@ -27,28 +40,27 @@
               <%= alert %>
             </div>
 
+
+
             <div class="Grid-cell u-desktop-size6of12 u-tablet-sizeFull u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>Nome<span class="red-text">*</span></span>
+                  <span>Nome</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.text_field :name, class: "js-validateName Form-inputValue u-sizeFull",
-                  placeholder: "Ex: Hospital Carlos Schallenberger" %>
+                  <input class="js-validateName Form-inputValue u-sizeFull" placeholder="Ex: Hospital Carlos Schallenberger" type="text" name="user_blood_bank[name]" id="user_blood_bank_name">
                   <span id="errorName" style="display:none;" class="red-text">Nome inválido!</span>
                 </div>
               </div>
             </div>
 
-
             <div class="Grid-cell u-desktop-size6of12 u-tablet-sizeFull u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>CNPJ<span class="red-text">*</span></span>
+                  <span>CNPJ</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.text_field :cnpj, class: "Form-inputValue js-validateCNPJ",
-                  :maxlength => 18, placeholder: "Digite apenas números" %>
+                  <input class="Form-inputValue js-validateCNPJ" maxlength="18" placeholder="Digite apenas números" size="18" type="text" name="user_blood_bank[cnpj]" id="user_blood_bank_cnpj">
                   <span id="errorCNPJ" style="display:none;" class="red-text"></span>
                 </div>
               </div>
@@ -58,24 +70,23 @@
             <div class="Grid-cell u-desktop-size6of12 u-tablet-size6of12 u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>E-mail<span class="red-text">*</span></span>
+                  <span>E-mail</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.text_field :email, class: "Form-inputValue js-validateEmail",
-                  placeholder: "Ex: hospital@email.com.br" %>
+                  <input class="Form-inputValue js-validateEmail" placeholder="Ex: hospital@email.com.br" type="text" value="" name="user_blood_bank[email]" id="user_blood_bank_email">
                   <span style="display:none;" class="red-text errorEmail"></span>
                 </div>
               </div>
             </div>
 
+
             <div class="Grid-cell u-desktop-size6of12 u-tablet-size6of12 u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>Telefone<span class="red-text">*</span></span>
+                  <span>Telefone</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.text_field :phone, class: "Form-inputValue js-validatePhone",
-                  :maxlength => 13, placeholder: "Ex: (51) 9876-5432" %>
+                  <input class="Form-inputValue js-validatePhone" maxlength="13" placeholder="Ex: (51) 9876-5432" size="13" type="text" name="user_blood_bank[phone]" id="user_blood_bank_phone">
                   <span id="errorPhone" style="display:none;" class="red-text"></span>
                 </div>
               </div>
@@ -87,8 +98,7 @@
                   <span>Ramal</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.text_field :extension, class: "Form-inputValue js-validateExtension",
-                  :maxlength => 4, placeholder: "Ex: 1234"%>
+                  <input class="Form-inputValue js-validateExtension" maxlength="4" placeholder="Ex: 1234" size="4" type="text" name="user_blood_bank[extension]" id="user_blood_bank_extension">
                   <span id="errorExtension" style="display:none;" class="red-text">Campo obrigatório!</span>
                 </div>
               </div>
@@ -97,11 +107,10 @@
             <div class="Grid-cell u-desktop-size6of12 u-tablet-size6of12 u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>Endereço<span class="red-text">*</span></span>
+                  <span>Endereço</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.text_field :address, class: "Form-inputValue js-validateAddress",
-                  placeholder: "Ex: Av. Ipiranga, 6681"%>
+                  <input class="Form-inputValue js-validateAddress" placeholder="Ex: Av. Ipiranga, 6681" type="text" name="user_blood_bank[address]" id="user_blood_bank_address">
                   <span id="errorAddress" style="display:none;" class="red-text">Campo obrigatório!</span>
                 </div>
               </div>
@@ -110,13 +119,12 @@
             <div class="Grid-cell u-desktop-size6of12 u-tablet-size6of12 u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>Senha<span class="red-text">*</span></span>
+                  <span>Senha</span>
                 </div>
                 <div class="u-sizeFull">
                   <% if @minimum_password_length %>
                   <% end %>
-                  <%= f.password_field :password, autocomplete: "off",
-                  class:"js-validatePassword Form-inputValue", placeholder: "Senha" %>
+                  <input autocomplete="off" class="js-validatePassword Form-inputValue" placeholder="Senha" type="password" name="user_blood_bank[password]" id="user_blood_bank_password">
                   <span id="errorPassword" style="display:none;" class="red-text"></span>
                 </div>
               </div>
@@ -125,15 +133,15 @@
             <div class="Grid-cell u-desktop-size6of12 u-tablet-size6of12 u-mobile-sizeFull">
               <div class="Form-group">
                 <div class="Form-inputLabel u-sizeFull">
-                  <span>Confirmar senha<span class="red-text">*</span></span>
+                  <span>Confirmar senha</span>
                 </div>
                 <div class="u-sizeFull">
-                  <%= f.password_field :password_confirmation, autocomplete: "off",
-                  class:"js-validatePasswordConfirmation Form-inputValue", placeholder: "Confirme sua senha" %>
+                  <input autocomplete="off" class="js-validatePasswordConfirmation Form-inputValue" placeholder="Confirme sua senha" type="password" name="user_blood_bank[password_confirmation]" id="user_blood_bank_password_confirmation">
                   <span id="errorPasswordConfirmation" style="display:none;" class="red-text"></span>
                 </div>
               </div>
             </div>
+
 
             <% if resource.id %>
             <div class="field">
@@ -141,43 +149,21 @@
               <%= f.password_field :current_password, autocomplete: "off" %>
             </div>
             <% end %>
+
             <div class="Container-footer">
-              <%= f.submit "Cadastrar", id:"blood-bank-register-button",
-              class: "Button Button--medium u-float-right is-disabled js-validateButtonBank" %>
+              <div class="u-float-right">
+                <button name="button" type="reset" class="Button Button--invisible" onclick="validateFormService.buttonReset()">Limpar</button>
+                <input type="submit" name="commit" value="Cadastrar" id="blood-bank-register-button" class="Button Button--medium u-float-right is-disabled js-validateButtonBank" data-disable-with="Cadastrar">
+              </div>
             </div>
 
           </div>
         </div>
       </div>
-    </div>
+      <!-- Fim Form -->
 
-    <% end %>
+    </form>
 
-    <div class="Modal js-modalMessageRegisterBank">
 
-      <div class="Modal-overlay">
-      </div>
-
-      <div class="Modal-content js-modalContent">
-        <div class="Modal-header">
-          <div class="Modal-titleBox">
-            <h3 class="Modal-title">
-              Cadastro em analise
-            </h3>
-          </div>
-        </div>
-
-        <div class="Modal-body">
-          <div class="u-align-center u-padding-left u-padding-right">
-            <span class="u-font-size20 ">Seu cadastro foi realizado com sucesso, aguarde a confirmação do administrador do sistema. </span>
-          </div>
-          <div class="u-align-center u-padding-top u-padding-bottom">
-            <div onclick="Modal.close('.js-modalMessageRegisterBank')">
-              <%= button_to "OK", root_path, method: :get, class:"Button Button--medium u-size3of12 is-actived" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
